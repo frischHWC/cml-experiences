@@ -1,0 +1,27 @@
+# CML Experiences
+
+Goal of this repository is to provide some few easy examples of demo to run on CML.
+
+It relies on Data generated previously be Datagen.
+
+## Weather 
+
+Use Datagen to generate data in _hdfs-parquet_  with following parameters:
+Model file: link:datagen-models/weather-model.json[weather-model]
+Batches: 10
+Rows: 100000
+Threads: 10
+
+Then play weather-model.py file in a CML Session.
+
+
+## Bank Accounts
+
+Use Datagen to generate data in _hdfs-parquet_ with following parameters:
+Model file: link:datagen-models/bank-account-model.json[bank-account-model]
+Batches: 10
+Rows: 1000000
+Threads: 10
+
+Then play bank-accounts.py file in a CML Session.
+
