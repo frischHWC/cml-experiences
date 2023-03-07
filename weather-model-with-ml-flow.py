@@ -105,3 +105,5 @@ mlflow.log_metric("number_of_no_rain_predicted_but_rain", number_of_no_rain_pred
 
 mlflow.end_run()
 
+# Save of the model to HDFS
+model.save("model_spark")
