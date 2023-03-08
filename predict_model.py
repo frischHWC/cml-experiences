@@ -12,7 +12,7 @@ spark = SparkSession\
     .appName("WeatherModel")\
     .getOrCreate()
 # Load Spark model from HDFS
-model_loaded = DecisionTreeClassificationModel.load("hdfs:///user/francois/model_spark")
+model_loaded = DecisionTreeClassificationModel.load("model_spark")
 
 columns = ['wind_provenance_9_am' ,  'wind_force_9_am', "wind_provenance_9_pm", "wind_force_9_pm", "pressure_9_am", "pressure_9_pm","humidity_9_am", "humidity_9_pm", "temperature_9_am", "temperature_9_pm"]
 
