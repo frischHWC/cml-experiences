@@ -4,21 +4,22 @@ from pyspark.sql.functions import col, udf
 from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.feature import StringIndexer
 from pyspark.ml.classification import DecisionTreeClassificationModel
+import json
+
+# Create a Spark Session
+spark = SparkSession\
+    .builder\
+    .appName("WeatherModel")\
+    .getOrCreate()
+# Load Spark model from HDFS
+model_loaded = DecisionTreeClassificationModel.load("hdfs:///user/francois/model_spark")
+
+columns = ['wind_provenance_9_am' ,  'wind_force_9_am', "wind_provenance_9_pm", "wind_force_9_pm", "pressure_9_am", "pressure_9_pm","humidity_9_am", "humidity_9_pm", "temperature_9_am", "temperature_9_pm"]
 
 
-def predict(wind_p_9_am, wind_f_9am, wind_p_9_pm, wind_f_9_pm, p_9am, p_9pm, h_9am, h_9pm, t_9am, t_9pm):
+def predict(input_dict):
     
-    # Create a Spark Session
-    spark = SparkSession\
-        .builder\
-        .appName("WeatherModel")\
-        .getOrCreate()
-
-    # Load Spark model from HDFS
-    model_loaded = DecisionTreeClassificationModel.load("hdfs://user/francois/model_spark")
-
-    columns = ['wind_provenance_9_am' ,  'wind_force_9_am', "wind_provenance_9_pm", "wind_force_9_pm", "pressure_9_am", "pressure_9_pm","humidity_9_am", "humidity_9_pm", "temperature_9_am", "temperature_9_pm"]
-    data = [(wind_p_9_am, wind_f_9am, wind_p_9_pm, wind_f_9_pm, p_9am, p_9pm, h_9am, h_9pm, t_9am, t_9pm)]
+    data = [(input_dict["wind_p_9_am"], input_dict["wind_f_9am"], input_dict["wind_p_9_pm"], input_dict["wind_f_9_pm"], input_dict["p_9am"], input_dict["p_9pm"], input_dict["h_9am"], input_dict["h_9pm"], input_dict["t_9am"], input_dict["t_9pm"])]
     rdd = spark.sparkContext.parallelize(data)
     df = spark.createDataFrame(rdd).toDF(*columns)
 
@@ -41,6 +42,8 @@ def predict(wind_p_9_am, wind_f_9am, wind_p_9_pm, wind_f_9_pm, p_9am, p_9pm, h_9
     # Return result
     raw_result = predictions.select("prediction").take(1)[0]['prediction']
     if raw_result == 0:
-      return "It will not rain"
+      result = {"rain" : "no" }
     else:
-      return "it will rain"
+      result = {"rain" : "yes" }
+
+    return json.dumps(result)
