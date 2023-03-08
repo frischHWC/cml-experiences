@@ -5,7 +5,6 @@ from pyspark.ml.feature import VectorAssembler
 from pyspark.ml.feature import StringIndexer
 from pyspark.ml.classification import DecisionTreeClassificationModel
 import json
-import mlflow.spark
 
 
 # Create a Spark Session locally (to avoid spinning up executors)
@@ -17,6 +16,7 @@ spark = SparkSession\
     .getOrCreate()
 
 # Load Spark model from HDFS
+import mlflow.spark
 model_loaded = mlflow.spark.load_model("model-spark-mlflow")
 
 columns = ['wind_provenance_9_am' ,  'wind_force_9_am', "wind_provenance_9_pm", "wind_force_9_pm", "pressure_9_am", "pressure_9_pm","humidity_9_am", "humidity_9_pm", "temperature_9_am", "temperature_9_pm"]

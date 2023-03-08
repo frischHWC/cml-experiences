@@ -8,7 +8,6 @@ from pyspark.ml.feature import StringIndexer
 from pyspark.ml.regression import LinearRegression
 from pyspark.ml.classification import DecisionTreeClassifier
 import mlflow
-import mlflow.spark
 
 # Let's prepare ML Flow
 mlflow.set_experiment("my_first_exp")
@@ -105,8 +104,9 @@ mlflow.log_metric("success_rate", success_rate)
 mlflow.log_metric("number_of_rain_predicted_but_no_rain", number_of_rain_predicted_but_no_rain)
 mlflow.log_metric("number_of_no_rain_predicted_but_rain", number_of_no_rain_predicted_but_rain)
 
-mlflow.end_run()
+#mlflow.end_run()
 
 
-# Save model as ML flow locally 
+# Save model as ML flow locally
+import mlflow.spark
 mlflow.spark.save_model(model, "model-spark-mlflow")
