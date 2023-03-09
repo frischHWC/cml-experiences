@@ -110,3 +110,6 @@ mlflow.log_metric("number_of_no_rain_predicted_but_rain", number_of_no_rain_pred
 # Save model as ML flow locally
 import mlflow.spark
 mlflow.spark.save_model(model, "model-spark-mlflow")
+
+# Save Model to HDFS
+model.save("model_spark")

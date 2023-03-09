@@ -11,14 +11,11 @@ import json
 spark = SparkSession\
     .builder\
     .appName("WeatherModel")\
-    .config("spark.jars.packages", "org.mlflow:mlflow-spark:2.2.1")\
     .master("local[*]")\
     .getOrCreate()
 
-# Load Spark model from HDFS
-import mlflow.spark
-model_loaded = mlflow.spark.load_model("model-spark-mlflow")
-
+# Load Spark model from local FS
+model_loaded = DecisionTreeClassificationModel.load("model_spark")
 columns = ['wind_provenance_9_am' ,  'wind_force_9_am', "wind_provenance_9_pm", "wind_force_9_pm", "pressure_9_am", "pressure_9_pm","humidity_9_am", "humidity_9_pm", "temperature_9_am", "temperature_9_pm"]
 
 
@@ -40,8 +37,7 @@ def predict(input_dict):
       "wind_provenance_9_pm_index", "wind_provenance_9_am_index"])
     vectorized = vecAssembler.transform(df_index_wind_9pm)
 
-
-    # Test the model
+    # Predict the model
     predictions = model_loaded.transform(vectorized)
 
     # Return result
