@@ -118,6 +118,6 @@ mlflow.end_run()
 
 
 # Save Model to HDFS
-model.save("model_spark")
+model.write().overwrite().save("model_spark")
 
 
