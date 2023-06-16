@@ -81,8 +81,8 @@ mlflow.log_metric("number_of_rain_predicted_but_no_rain", number_of_rain_predict
 mlflow.log_metric("number_of_no_rain_predicted_but_rain", number_of_no_rain_predicted_but_rain)
 
 # Save model as ML flow locally
-mlflow.spark.save_model(model, "model-spark-mlflow")
-mlflow.spark.log_model(model, "model-spark-mlflow")
+mlflow.spark.save_model(model, "model")
+mlflow.spark.log_model(model, "model")
 
 mlflow.end_run()
 
@@ -111,8 +111,8 @@ mlflow.log_metric("number_of_rain_predicted_but_no_rain", number_of_rain_predict
 mlflow.log_metric("number_of_no_rain_predicted_but_rain", number_of_no_rain_predicted_but_rain)
 
 # Save model as ML flow locally
-mlflow.spark.save_model(model, "model-spark-mlflow")
-mlflow.spark.log_model(model, "model-spark-mlflow")
+mlflow.spark.save_model(model, "model")
+mlflow.spark.log_model(model, "model")
 
 mlflow.end_run()
 
