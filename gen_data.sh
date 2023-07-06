@@ -30,6 +30,8 @@ BATCHES=$3
 ROWS=$4
 THREADS=$5
 
+echo "Launching command for model: ${MODEL_FILE} to server ${DATAGEN_URL}"
+
 COMMAND_ID=$(curl -s -k -X POST -H "Accept: */*" -H "Content-Type: multipart/form-data ; boundary=toto" \
     -F "model_file=@${MODEL_FILE}" -u ${DATAGEN_USER}:${DATAGEN_PASSWORD} \
     "${DATAGEN_URL}/datagen/${SINK}/?batches=${BATCHES}&rows=${ROWS}&threads=${THREADS}" | jq -r '.commandUuid' )
