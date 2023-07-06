@@ -4,7 +4,18 @@ Goal of this repository is to provide some few easy examples of demo to run on C
 
 It relies on Data generated previously be Datagen.
 
-## Weather 
+
+## Data Generation
+
+To generate data, there are two ways:
+
+1. Use the script link:gen_data.sh[gen_data.sh] to generate data. You will need to change variables at the top of the script to match your environment. 
+    __WARNING: install jq before running the script, example: yum install jq__
+    
+1. Do it manually by following below instructions to generate data using swagger (or directly API) of Datagen (a service deployed in your base cluster).
+
+
+### Weather 
 
 Use Datagen to generate data in _hdfs-parquet_  with following parameters:
 
@@ -16,7 +27,7 @@ Use Datagen to generate data in _hdfs-parquet_  with following parameters:
 Then play weather-model.py file in a CML Session.
 
 
-## Bank Accounts
+### Bank Accounts
 
 Use Datagen to generate data in _hdfs-parquet_ with following parameters:
 
