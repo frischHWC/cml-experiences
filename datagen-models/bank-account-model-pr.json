@@ -3,13 +3,13 @@
     {
       "name": "account_id",
       "type": "INCREMENT_INTEGER",
-      "min": 9999999,
-      "max": 20000000
+      "min": 19999999,
+      "max": 30000000
     },
     {
       "name": "name",
       "type": "NAME",
-      "filters": ["France"]
+      "filters": ["Portugal"]
     },
     {
       "name": "birthdate",
@@ -20,7 +20,7 @@
     {
       "name": "city_of_residence",
       "type": "CITY",
-      "filters": ["France"]
+      "filters": ["Portugal"]
     },
     {
       "name": "country_of_residence",
@@ -32,7 +32,7 @@
     {
       "name": "phone_number",
       "type": "PHONE",
-      "filters": ["France"]
+      "filters": ["Portugal"]
     },
     {
       "name": "card_type",
@@ -43,15 +43,15 @@
       "name": "membership",
       "type": "STRING",
       "possible_values_weighted": {
-        "NORMAL": 92,
-        "PREMIUM": 7,
-        "PREMIUM_PLUS": 1
+        "NORMAL": 85,
+        "PREMIUM": 12,
+        "PREMIUM_PLUS": 3
       }
     }
   ],
   "Table_Names": [
     {"HDFS_FILE_PATH": "/user/datagen/hdfs/banking/bank_account/"},
-    {"HDFS_FILE_NAME": "bank_account"},
+    {"HDFS_FILE_NAME": "bank_account-pr"},
     {"HIVE_HDFS_FILE_PATH": "/user/datagen/hive/banking/bank_account/"},
     {"HBASE_TABLE_NAME": "bank_account"},
     {"HBASE_NAMESPACE": "banking"},

@@ -33,3 +33,11 @@ ten_rows = data_joined.take(10)
 for idx, i in enumerate(ten_rows):
   print(str(idx+1) + "/10 of the most customer's cities are: " + i.__getitem__('city_of_residence'))
   gmaps(i.__getitem__('city_of_residence')+", USA")
+
+
+import matplotlib.pyplot as plt
+import pandas as pd
+
+pdf = data_joined.limit(25).toPandas()
+pdf.plot(kind='barh',x='city_of_residence',y='count',colormap='Blues')
+
