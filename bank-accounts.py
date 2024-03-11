@@ -31,8 +31,8 @@ ten_rows = data_joined.take(10)
 
 # Print on a map
 for idx, i in enumerate(ten_rows):
-  print(str(idx+1) + "/10 of the most customer's cities are: " + i.__getitem__('city_of_residence'))
-  gmaps(i.__getitem__('city_of_residence')+", USA")
+  print(str(idx+1) + "/10 of the city with most customer is: " + i.__getitem__('city_of_residence') + " with " + str(i.__getitem__('count')) + " customers" ) 
+  gmaps(i.__getitem__('city_of_residence') + ", " + i.__getitem__('country_of_residence') )
 
 
 import matplotlib.pyplot as plt
