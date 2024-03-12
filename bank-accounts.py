@@ -27,7 +27,7 @@ df_grouped_by_city = df.groupBy('city_of_residence').count()
 data_joined = df_grouped_by_city.join(df, ['city_of_residence']).dropDuplicates(['city_of_residence']).sort(col("count").desc())
 
 # Get ten cities with most accounts
-ten_rows = data_joined.take(10)
+ten_rows = data_joined.take(5)
 
 # Print on a map
 for idx, i in enumerate(ten_rows):
