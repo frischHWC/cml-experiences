@@ -1,4 +1,4 @@
-!pip install tensorflow
+!pip install tensorflow[and-cuda]
 !pip install keras
 
 import os
