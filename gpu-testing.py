@@ -1,5 +1,6 @@
 !pip install tensorflow[and-cuda]
 !pip install keras
+!pip install -U "jax[cuda12]"
 
 import os
 os.environ["KERAS_BACKEND"] = "tensorflow"
