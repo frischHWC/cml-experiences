@@ -1,4 +1,5 @@
 {
+  "model_name": "bank-account-cml",
   "Fields": [
     {
       "name": "account_id",

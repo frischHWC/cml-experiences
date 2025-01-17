@@ -34,13 +34,13 @@ echo "Launching command for model: ${MODEL_FILE} to server ${DATAGEN_URL}"
 
 COMMAND_ID=$(curl -s -k -X POST -H "Accept: */*" -H "Content-Type: multipart/form-data" \
     -F "model_file=@${MODEL_FILE}" -u ${DATAGEN_USER}:${DATAGEN_PASSWORD} \
-    "${DATAGEN_URL}/datagen/${SINK}/?batches=${BATCHES}&rows=${ROWS}&threads=${THREADS}" | jq -r '.commandUuid' )
+    "${DATAGEN_URL}/api/v1/datagen/${SINK}?batches=${BATCHES}&rows=${ROWS}&threads=${THREADS}" | jq -r '.commandUuid' )
 
 echo "Checking status of the command"
 while true
 do
     STATUS=$(curl -s -k -X POST -H "Accept: application/json" -u ${DATAGEN_USER}:${DATAGEN_PASSWORD} \
-        "${DATAGEN_URL}/command/getCommandStatus?commandUuid=${COMMAND_ID}" | jq -r ".status")
+        "${DATAGEN_URL}/api/v1/command/getCommandStatus?commandUuid=${COMMAND_ID}" | jq -r ".status")
     printf '.'
     if [ "${STATUS}" == "FINISHED" ]
     then
@@ -60,6 +60,6 @@ done
 
 }
 
-generate_data hdfs-parquet datagen-models/weather-model.json 10 100000 10
-generate_data hdfs-parquet datagen-models/bank-account-model.json 10 1000000 10
-generate_data hdfs-parquet datagen-models/bank-account-model-pr.json 10 1000000 10
+generate_data hdfs_parquet datagen-models/weather-model.json 10 100000 10
+generate_data hdfs_parquet datagen-models/bank-account-model.json 10 1000000 10
+generate_data hdfs_parquet datagen-models/bank-account-model-pr.json 10 1000000 10
